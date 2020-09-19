@@ -1,7 +1,9 @@
 const http = require('http');
 
+let host = process.argv[2] || 'google.com';
+let port = process.argv[3] || 8080;
+
 http.createServer((request, response) => {
-  console.log(request.url);
   Object.entries(request.headers).forEach((header) => {
     let key = header[0];
     if (key.toUpperCase() == 'IF-NONE-MATCH') {
@@ -15,7 +17,7 @@ http.createServer((request, response) => {
     body.push(chunk);
   }).on('end', () => {
     let options = {
-      host: '10.122.1.201',
+      host: host,
       path: request.url,
       method: request.method,
       headers: request.headers,
@@ -30,4 +32,6 @@ http.createServer((request, response) => {
       });
     }).end(Buffer.concat(body));
   });
-}).listen(8080);
+}).listen(port);
+
+console.log(`Starting proxy server for ${host} in port ${port}`);
