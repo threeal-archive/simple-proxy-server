@@ -1,0 +1,9 @@
+{
+  "name": "simple-proxy-server",
+  "version": "0.0.1",
+  "author": "Alfi Maulana <alfi.maulana.f@gmail.com>",
+  "private": true,
+  "scripts": {
+    "start": "node bin/start.js"
+  }
+}
